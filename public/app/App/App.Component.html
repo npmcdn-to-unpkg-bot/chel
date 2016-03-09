@@ -1,0 +1,29 @@
+<div mdl class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+		  <div class="mdl-layout__drawer-button"><i class="material-icons">menu</i>
+			</div>
+        <div class="mdl-layout__header-row" id="mainHeader">
+          <span class="mdl-layout-title">{{title}}</span>
+		  <div class="mdl-layout-spacer"></div>
+		  <button id="switch-user" class="mdl-button mdl-js-button">
+			{{loggedInUserName}} <i class="material-icons">person</i>
+		  </button>
+		  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+				for="switch-user">
+			<li *ngFor="#user of users" (click)="setUser(user.id)" class="mdl-menu__item">{{user.name}}</li>
+			<li (click)="addUser()" class="mdl-menu__item">Add User</li>
+		  </ul>
+        </div>
+      </header>
+      <div class="chel-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <nav class="chel-navigation mdl-navigation mdl-color--blue-grey-800">
+			<a class="mdl-navigation__link" (click)="navigate(['SeriesList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Series</a>
+			<a class="mdl-navigation__link" (click)="navigate(['SeriesList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Statistics</a>
+          <a class="mdl-navigation__link" (click)="navigate(['GameList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Games</a>
+		  <a class="mdl-navigation__link" (click)="navigate(['Settings', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Settings</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+		  <router-outlet></router-outlet>
+      </main>
+    </div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <title>Chel</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Simple web app for tracking NHL '16 series.'">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="shortcut icon" href="images/favicon.png">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.2/material.cyan-light_blue.min.css">
+	<script src="https://code.getmdl.io/1.1.2/material.min.js"></script>
+	
+	<!--<link rel="stylesheet" href="https://cdn.rawgit.com/justindujardin/ng2-material/gh-pages/v/0.2.5/dist/ng2-material.css" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/justindujardin/ng2-material/gh-pages/v/0.2.5/dist/font.css" />-->
+	
+    <link rel="stylesheet" href="styles.css">
+	
+    <!-- IE required polyfills, in this exact order -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+    <script src="https://npmcdn.com/angular2@2.0.0-beta.8/es6/dev/src/testing/shims_for_IE.js"></script>
+
+    <script src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"></script>
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="https://npmcdn.com/typescript@1.8.2/lib/typescript.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.8/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.8/angular2.dev.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.8/router.dev.js"></script>
+    <script>
+      System.config({
+        transpiler: 'typescript', 
+        typescriptOptions: { emitDecoratorMetadata: true }, 
+		//map: { 'ng2-material': 'https://cdn.rawgit.com/justindujardin/ng2-material/gh-pages/v/0.2.5/ng2-material' },
+        packages: {'app': {defaultExtension: 'ts'}/*, 'ng2-material': {defaultExtension: 'js'}*/} 
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
+  </head>
+
+  <body>
+    <chel-app>Loading...</chel-app>
+  </body>
+</html>
