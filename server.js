@@ -42,12 +42,16 @@ app.get('/api/users', function (req, res, next) {
 	});
 });
 app.get('/api/users/:id', function (req, res, next) {
-	User.findById(req.params.id, function(err, user) {
-		if(err) {
-			res.send(err);
-		}
-		res.json(user);
-	});
+	try {
+		User.findById(req.params.id, function(err, user) {
+			if(err) {
+				res.send(err);
+			}
+			res.json(user);
+		});
+	} catch (err) {
+		res.send(err);
+	}
 });
 app.post('/api/users', function (req, res) {
 	var user = new User();
@@ -70,12 +74,16 @@ app.get('/api/series', function (req, res, next) {
 	});
 });
 app.get('/api/series/:id', function (req, res, next) {
-	Series.findById(req.params.id, function(err, series) {
-		if(err) {
-			res.send(err);
-		}
-		res.json(series);
-	});
+	try {
+		Series.findById(req.params.id, function(err, series) {
+			if(err) {
+				res.send(err);
+			}
+			res.json(series);
+		});
+	} catch (err) {
+		res.send(err);
+	}
 });
 app.post('/api/series', function (req, res) {
 	var series = new Series();
@@ -100,12 +108,16 @@ app.get('/api/games', function (req, res, next) {
 	});
 });
 app.get('/api/games/:id', function (req, res, next) {
-	Game.findById(req.params.id, function(err, game) {
-		if(err) {
-			res.send(err);
-		}
-		res.json(game);
-	});
+	try {
+		Game.findById(req.params.id, function(err, game) {
+			if(err) {
+				res.send(err);
+			}
+			res.json(game);
+		});
+	} catch (err) {
+		res.send(err);
+	}
 });
 app.post('/api/series', function (req, res) {
 	var game = new Game();
@@ -137,12 +149,16 @@ app.get('/api/teams', function (req, res, next) {
 	});
 });
 app.get('/api/teams/:id', function (req, res, next) {
-	Team.findById(req.params.id, function(err, team) {
-		if(err) {
-			res.send(err);
-		}
-		res.json(team);
-	});
+	try {
+		Team.findById(req.params.id, function(err, team) {
+			if(err) {
+				res.send(err);
+			}
+			res.json(team);
+		});
+	} catch (err) {
+		res.send(err);
+	}
 });
 app.post('/api/teams', function (req, res) {
 	var team = new Team();
