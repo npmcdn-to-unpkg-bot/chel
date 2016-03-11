@@ -16,7 +16,7 @@ import { SeriesComponent } from '../Series/Series.Component';
 })
 export class SeriesListComponent implements OnInit {
 	series: Series[] = [];
-	loggedInUserId: number;
+	loggedInUserId: string;
 
 	constructor(
 		private _router: Router,
@@ -26,7 +26,7 @@ export class SeriesListComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUserId = this._userService.getLastLoggedInUserId();
-		this._seriesService.getSeriesForUser(this.loggedInUserId).then(series => {
+		this._seriesService.getSeriesForUser(this.loggedInUserId).subscribe(series => {
 			this.series = series;
 		});
 	}

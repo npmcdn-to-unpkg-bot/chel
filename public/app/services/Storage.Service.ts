@@ -10,8 +10,8 @@ export class StorageService {
 		}
 	}
 
-	getLastLoggedInUserId() : number {
-		let id = parseInt(localStorage.getItem(this.namespace + 'lastLoggedInUserId'));
-		return id >= 0 ? id : -1;
+	getLastLoggedInUserId() : string {
+		let id = localStorage.getItem(this.namespace + 'lastLoggedInUserId');
+		return id !== 'undefined' ? id : -1;
 	}
 }

@@ -19,8 +19,8 @@ import { Team, TeamService } from '../services/Team.Service';
 export class SeriesComponent implements OnInit {
 	@Input() series: Series;
 	games: Game[] = [];
-	opponentId: number = -1;
-	opponentName: string = "";
+	opponentId: string = '';
+	opponentName: string = '';
 	/*homeUser: User = {};
 	awayUser: User = {};
 	homeTeam: Team = {};
@@ -41,9 +41,9 @@ export class SeriesComponent implements OnInit {
 		console.log(this.series);
 		let id = this._userService.getLastLoggedInUserId();
 		this.opponentId = this.series.getOpponent(id);
-		this._userService.getUser(this.opponentId).then(user => this.opponentName = user.name);
+		this._userService.getUser(this.opponentId).subscribe(user => this.opponentName = user.name);
 		console.log("opponent id: " + this.opponentId);
-		this._gameService.getGamesBySeries(this.series.id).then(games => {
+		this._gameService.getGamesBySeries(parseInt(this.series.id)).then(games => {
 			this.games = games;
 			console.log("series " + this.series.id + " games:");
 			console.log(this.games);

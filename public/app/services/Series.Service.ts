@@ -1,12 +1,14 @@
 import { Injectable } from 'angular2/core';
 import { Game } from './Game.Service';
 
+import { Http } from 'angular2/http';
+
 export class Series {
-	constructor(public id: number, public length: number, public homeUser: number, public awayUser: number) {
+	constructor(public id: string, public length: number, public homeUser: string, public awayUser: string) {
 		
 	}
 	
-	getOpponent(user: number) {
+	getOpponent(user: string) {
 		if(this.homeUser == user) {
 			return this.awayUser;
 		} else {
@@ -35,26 +37,69 @@ _mockSeries.push(new Series(3, 3, 2, 1));
 
 @Injectable()
 export class SeriesService {
-	// See the "Take it slow" appendix
-	getSeriesSlowly() {
-		return new Promise<Series[]>(resolve => setTimeout(()=>resolve(_mockSeries), 2000));
-	}
+	private _uri: string = '/api/series/';
 	
-	getSeries(id: number) {
-		if(!!id) {
+	constructor(private http: Http) {};
+	
+	getSeries(id: string) {
+		if(isNaN(id) {
+			return this.http.get(this._uri).map( responseData => {
+				return responseData.json();
+			})
+			.map((series: Array<any>) => {
+				let result:Array<Series> = [];
+				if (series) {
+					series.forEach((s) => {
+						result.push(new Series(
+							s._id,
+							s.length,
+							s.homeUser,
+							s.awayUser));
+					});
+				}
+				return result;
+			});
+		} else {
+			return this.http.get(this._uri + id).map( responseData => {
+				let d = responseData.json();
+				return new Series(d._id, d.length, d.homeUser, d.awayUser);
+			});
+		}
+		
+		/*if(!!id) {
 			return Promise.resolve(_mockSeries).then(
 				series => series.filter(s => s.id === id)[0]
 			);
 		} else {
 			return Promise.resolve(_mockSeries);
-		}
+		}*/
 	}
 	
-	getSeriesForUser(user: number) {
-		return Promise.resolve(_mockSeries).then(
+	getSeriesForUser(user: string) {
+		return this.http.get(this._uri).map( responseData => {
+			return responseData.json();
+		})
+		.map((series: Array<any>) => {
+			let result:Array<Series> = [];
+			if (series) {
+				series.forEach((s) => {
+					if(s.homeUser === user || s.awayUser === user) {
+						result.push(new Series(
+							s._id,
+							s.length,
+							s.homeUser,
+							s.awayUser));
+					}
+				});
+			}
+			return result;
+		});
+		
+		
+		/*return Promise.resolve(_mockSeries).then(
 			series => series.filter(s => {
 				return (s.homeUser === user || s.awayUser === user);
 			})
-		);
+		);*/
 	}
 }

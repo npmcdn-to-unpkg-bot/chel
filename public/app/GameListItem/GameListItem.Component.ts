@@ -33,8 +33,8 @@ export class GameListItemComponent implements OnInit {
 
 	ngOnInit() {
 		console.log(this.game);
-		this._userService.getUser(this.game.homeUser).then(user => this.homeUser = user);
-		this._userService.getUser(this.game.awayUser).then(user => this.awayUser = user);
+		this._userService.getUser(this.game.homeUser).subscribe(user => this.homeUser = user);
+		this._userService.getUser(this.game.awayUser).subscribe(user => this.awayUser = user);
 		this._teamService.getTeam(this.game.homeTeam).then(team => this.homeTeam = team);
 		this._teamService.getTeam(this.game.awayTeam).then(team => this.awayTeam = team);
 	}

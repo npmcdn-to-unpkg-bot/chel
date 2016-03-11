@@ -1,6 +1,9 @@
 import { Component, provide, OnInit } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
+import { HTTP_PROVIDERS } from 'angular2/http';
+
+import 'rxjs/Rx';
 
 import {MDL} from '../MaterialDesignLite.Directive';
 
@@ -26,6 +29,7 @@ import { SettingsComponent } from '../Settings/Settings.Component';
 	],
 	providers: [
 		ROUTER_PROVIDERS,
+		HTTP_PROVIDERS,
 		StorageService,
 		GameService,
 		UserService,
@@ -58,10 +62,10 @@ import { SettingsComponent } from '../Settings/Settings.Component';
 	}
 ])
 export class AppComponent implements OnInit{
-	title = "Chel";
+	title = 'Chel';
 	users: User[] = [];
-	loggedInUserId: number = -1;
-	loggedInUserName: string = ""; 
+	loggedInUserId: string = '';
+	loggedInUserName: string = ''; 
 	
 	constructor(
 		public router: Router,
@@ -69,20 +73,28 @@ export class AppComponent implements OnInit{
 	}
 	
 	ngOnInit() {
-		this._userService.getUsers().then(users => {
+		this._userService.getUsers().subscribe(users => {
+			this.users = users;
+			console.log(this.users);
+			this.loggedInUserId = this._userService.getLastLoggedInUserId();
+			console.log(this.loggedInUserId);
+			this.loggedInUserName = this.users.filter(user => user.id === this.loggedInUserId)[0].name;
+		});
+		
+		/*.then(users => {
 			this.users = users;
 			this.loggedInUserId = this._userService.getLastLoggedInUserId();
 			this.loggedInUserName = this.users.filter(user => user.id == this.loggedInUserId)[0].name;
-		});
+		});*/
 	}
 	
 	addUser() {
 		console.log('adding user...');
 	}
 	
-	setUser(id: number) {
+	setUser(id: string) {
 		this.loggedInUserId = id;
-		this.loggedInUserName = this.users.filter(user => user.id == id)[0].name;
+		this.loggedInUserName = this.users.filter(user => user.id === id)[0].name;
 		setTimeout(function() {
 			document.querySelector('#mainHeader .mdl-menu__container').classList.remove("is-visible");
 		}, 250);

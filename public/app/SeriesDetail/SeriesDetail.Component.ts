@@ -35,7 +35,7 @@ export class SeriesDetailComponent implements OnInit {
 
 	ngOnInit() {
 		let id = +this._routeParams.get('id');
-		this._seriesService.getSeries(id).then(series => {
+		this._seriesService.getSeries(id).subscribe(series => {
 			this.series = series;
 			console.log(this.series);
 		});
