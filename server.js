@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 // models
 var User = require('./models/UserSchema.js');
+var Series = require('./models/SeriesSchema.js');
 
 // connect to database
 var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/chel';
@@ -29,7 +30,7 @@ app.get('/', function (req, res) {
 });
 app.use(express.static('public'));
 
-// api
+// user api
 app.get('/api/users', function (req, res, next) {
 	User.find(function(err, users) {
 		if(err) {
@@ -49,12 +50,43 @@ app.get('/api/users/:id', function (req, res, next) {
 app.post('/api/users', function (req, res) {
 	var user = new User();
 	console.log(req.body);
-	user.name = req.body.name
+	user.name = req.body.name;
 	user.save(function(err) {
 		if(err) {
 			res.send(err);
 		}
 		res.json({ message: 'User created!' });
+	});
+});
+
+// series api
+app.get('/api/series', function (req, res, next) {
+	Series.find(function(err, series) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(series);
+	});
+});
+app.get('/api/series/:id', function (req, res, next) {
+	Series.findById(req.params.id, function(err, series) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(series);
+	});
+});
+app.post('/api/series', function (req, res) {
+	var series = new Series();
+	console.log(req.body);
+	series.length = req.body.length;
+	series.homeUser = req.body.homeUser;
+	series.awayUser = req.body.awayUser;
+	series.save(function(err) {
+		if(err) {
+			res.send(err);
+		}
+		res.json({ message: 'Series created!' });
 	});
 });
 
