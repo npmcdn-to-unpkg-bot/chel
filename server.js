@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 // models
 var User = require('./models/UserSchema.js');
 var Series = require('./models/SeriesSchema.js');
+var Game = require('./models/GameSchema.js');
+var Team = require('./models/TeamSchema.js');
 
 // connect to database
 var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/chel';
@@ -49,7 +51,6 @@ app.get('/api/users/:id', function (req, res, next) {
 });
 app.post('/api/users', function (req, res) {
 	var user = new User();
-	console.log(req.body);
 	user.name = req.body.name;
 	user.save(function(err) {
 		if(err) {
@@ -78,7 +79,6 @@ app.get('/api/series/:id', function (req, res, next) {
 });
 app.post('/api/series', function (req, res) {
 	var series = new Series();
-	console.log(req.body);
 	series.length = req.body.length;
 	series.homeUser = req.body.homeUser;
 	series.awayUser = req.body.awayUser;
@@ -87,6 +87,73 @@ app.post('/api/series', function (req, res) {
 			res.send(err);
 		}
 		res.json({ message: 'Series created!' });
+	});
+});
+
+// games api
+app.get('/api/games', function (req, res, next) {
+	Game.find(function(err, games) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(games);
+	});
+});
+app.get('/api/games/:id', function (req, res, next) {
+	Game.findById(req.params.id, function(err, game) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(game);
+	});
+});
+app.post('/api/series', function (req, res) {
+	var game = new Game();
+	game.series = req.body.series;
+	game.date = req.body.date;
+	game.homeUser = req.body.homeUser;
+	game.awayUser = req.body.awayUser;
+	game.homeTeam = req.body.homeTeam;
+	game.awayTeam = req.body.awayTeam;
+	game.homeScore = req.body.homeScore;
+	game.awayScore = req.body.awayScore;
+	game.overtime = req.body.overtime;
+	game.notes = req.body.notes;
+	game.save(function(err) {
+		if(err) {
+			res.send(err);
+		}
+		res.json({ message: 'Game created!' });
+	});
+});
+
+// teams api
+app.get('/api/teams', function (req, res, next) {
+	Team.find(function(err, teams) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(teams);
+	});
+});
+app.get('/api/teams/:id', function (req, res, next) {
+	Team.findById(req.params.id, function(err, team) {
+		if(err) {
+			res.send(err);
+		}
+		res.json(team);
+	});
+});
+app.post('/api/teams', function (req, res) {
+	var team = new Team();
+	team.city = req.body.city;
+	team.name = req.body.name;
+	team.logoUrl = req.body.logoUrl;
+	team.save(function(err) {
+		if(err) {
+			res.send(err);
+		}
+		res.json({ message: 'Team created!' });
 	});
 });
 
