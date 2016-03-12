@@ -1,13 +1,16 @@
 import { Injectable } from 'angular2/core';
+import { Http } from 'angular2/http';
 
-export interface Team {
-	id: number;
-	city: string;
-	name: string;
-	logoUrl: string;
+export class Team {
+	constructor(public id: string,
+				public city: string,
+				public name: string,
+				public logoUrl: string) {
+					
+	}
 }
 
-var _mockTeams: Team[] = [
+/*var _mockTeams: Team[] = [
 	// Central Division
 	{"id": 0, "location": "Chicago", "name": "Blackhawks", "logoUrl": "images/teams/blackhawks.png"},
 	{"id": 1, "location": "Colorado", "name": "Avalanche", "logoUrl": "images/teams/avalanche.png"},
@@ -45,20 +48,43 @@ var _mockTeams: Team[] = [
 	{"id": 27, "location": "Pittsburgh", "name": "Penguins", "logoUrl": "images/teams/penguins.png"},
 	{"id": 28, "location": "Washington", "name": "Capitals", "logoUrl": "images/teams/capitals.png"},
 	{"id": 29, "location": "New York", "name": "Islanders", "logoUrl": "images/teams/islanders.png"}
-];
+];*/
 
 @Injectable()
 export class TeamService {
+	private _uri: string = '/api/teams/';
+	
+	constructor(private http: Http) {}
+	
 	getTeams() {
-		return Promise.resolve(_mockTeams);
+		return this.http.get(this._uri).map( responseData => {
+			return responseData.json();
+		})
+		.map((teams: Array<any>) => {
+			let result:Array<Team> = [];
+			if (teams) {
+				teams.forEach((team) => {
+					result.push(new Team(
+						team._id,
+						team.city,
+						team.name,
+						team.logoUrl
+					));
+				});
+			}
+			return result;
+		});
 	}
 
-	// See the "Take it slow" appendix
-	/*getGamesSlowly() {
-		return new Promise<Hero[]>(resolve => setTimeout(()=>resolve(_mockGames), 2000) // 2 seconds);
-	}*/
-
-	getTeam(id: number) {
-		return Promise.resolve(_mockTeams).then(teams => teams.filter(team => team.id === id)[0]);
+	getTeam(id: string) {
+		return this.http.get(this._uri + id).map( responseData => {
+			let d = responseData.json();
+			return new Team(
+				d._id,
+				d.city,
+				d.name,
+				d.logoUrl
+			);
+		});
 	}
 }

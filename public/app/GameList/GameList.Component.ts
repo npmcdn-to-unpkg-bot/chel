@@ -22,7 +22,7 @@ export class GameListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this._gameService.getGames().then(games => {
+		this._gameService.getGames().subscribe(games => {
 			this.games = games;
 		});
 	}

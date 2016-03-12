@@ -1,31 +1,35 @@
 import { Injectable } from 'angular2/core';
+import { Http } from 'angular2/http';
 
-export interface Game {
-	id: number;
-	series: number;
-	date: string;
-	homeUser: number;
-	awayUser: number;
-	homeTeam: number;
-	awayTeam: number;
-	homeScore: number;
-	awayScore: number;
-	overtime: boolean;
-	notes: string;
+export class Game {
+	constructor(
+		public id: string,
+		public series: string,
+		public date: string,
+		public homeUser: string,
+		public awayUser: string,
+		public homeTeam: string,
+		public awayTeam: string,
+		public homeScore: number,
+		public awayScore: number,
+		public overtime: boolean,
+		public notes: string) {
+		
+	}
 }
 
-export class GameUtilities {
-	/*(countHomeWins(series: Series, games: Game[]) : number {
+/*export class GameUtilities {
+	countHomeWins(series: Series, games: Game[]) : number {
 		//games.filter(game => game.)
 		return 0;
 	}
 	isSeriesOver(series: Series, games: Game[]) : boolean {
 		//let homeWins = 
 		return false;
-	}*/
-}
+	}
+}*/
 
-function randomDate(){
+/*function randomDate(){
    var startDate = new Date(2012,0,1).getTime();
    var endDate =  new Date(2015,0,1).getTime();
    var spaces = (endDate - startDate);
@@ -149,19 +153,92 @@ var _mockGames: Game[] = [
 		"overtime": true,
 		"notes": ""
 	}
-];
+];*/
 
 @Injectable()
 export class GameService {
+	private _uri: string = '/api/games/';
+	
+	constructor(private http: Http) {}
+	
 	getGames() {
-		return Promise.resolve(_mockGames);
+		//return Promise.resolve(_mockGames);
+		
+		return this.http.get(this._uri).map( responseData => {
+			return responseData.json();
+		})
+		.map((games: Array<any>) => {
+			let result:Array<Game> = [];
+			if (games) {
+				games.forEach((game) => {
+					result.push(new Game(
+						game._id,
+						game.series,
+						game.date,
+						game.homeUser,
+						game.awayUser,
+						game.homeTeam,
+						game.awayTeam,
+						game.homeScore,
+						game.awayScore,
+						game.overtime,
+						game.notes
+					));
+				});
+			}
+			return result;
+		});
 	}
 
-	getGame(id: number) {
-		return Promise.resolve(_mockGames).then(games => games.filter(game => game.id === id)[0]);
+	getGame(id: string) {
+		//return Promise.resolve(_mockGames).then(games => games.filter(game => game.id === id)[0]);
+		
+		return this.http.get(this._uri + id).map( responseData => {
+			let d = responseData.json();
+			return new Game(
+				d._id,
+				d.series,
+				d.date,
+				d.homeUser,
+				d.awayUser,
+				d.homeTeam,
+				d.awayTeam,
+				d.homeScore,
+				d.awayScore,
+				d.overtime,
+				d.notes
+			);
+		});
 	}
 	
 	getGamesBySeries(series: number) {
-		return Promise.resolve(_mockGames).then(games => games.filter(game => game.series === series));
+		//return Promise.resolve(_mockGames).then(games => games.filter(game => game.series === series));
+		
+		return this.http.get(this._uri).map( responseData => {
+			return responseData.json();
+		})
+		.map((games: Array<any>) => {
+			let result:Array<Game> = [];
+			if (games) {
+				games.forEach((game) => {
+					if(game.series === series) {
+						result.push(new Game(
+							game._id,
+							game.series,
+							game.date,
+							game.homeUser,
+							game.awayUser,
+							game.homeTeam,
+							game.awayTeam,
+							game.homeScore,
+							game.awayScore,
+							game.overtime,
+							game.notes
+						));
+					}
+				});
+			}
+			return result;
+		});
 	}
 }
