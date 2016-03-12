@@ -15,12 +15,12 @@
 		  </ul>
         </div>
       </header>
-      <div class="chel-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <nav class="chel-navigation mdl-navigation mdl-color--blue-grey-800">
-			<a class="mdl-navigation__link" (click)="navigate(['SeriesList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Series</a>
-			<a class="mdl-navigation__link" (click)="navigate(['SeriesList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Statistics</a>
-          <a class="mdl-navigation__link" (click)="navigate(['GameList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Games</a>
-		  <a class="mdl-navigation__link" (click)="navigate(['Settings', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Settings</a>
+      <div class="chel-drawer mdl-layout__drawer">
+        <nav class="chel-navigation mdl-navigation">
+			<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['SeriesList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Series</a>
+			<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['SeriesList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Statistics</a>
+          <a class="mdl-navigation__link chel-nav-link" (click)="navigate(['GameList', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Games</a>
+		  <a class="mdl-navigation__link chel-nav-link" (click)="navigate(['Settings', {}])"><!--<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>-->Settings</a>
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">

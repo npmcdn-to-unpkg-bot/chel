@@ -1,0 +1,16 @@
+.chel-drawer {
+	background-color: #333 !important;
+	border-right: none;
+}
+
+.chel-navigation {
+	padding-top: 0;
+}
+
+.chel-nav-link {
+	color: #fff !important;
+}
+
+.chel-nav-link:hover {
+	color: #333 !important;
+}
