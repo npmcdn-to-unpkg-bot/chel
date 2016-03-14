@@ -47,7 +47,7 @@ function createSeries(length, homeUser, awayUser) {
 function createGame(series, date, homeUser, awayUser, homeTeam, awayTeam, homeScore, awayScore, overtime, notes) {
 	return {
 		series: series,
-		data: date,
+		date: date,
 		homeUser: homeUser,
 		awayUser: awayUser,
 		homeTeam: homeTeam,
