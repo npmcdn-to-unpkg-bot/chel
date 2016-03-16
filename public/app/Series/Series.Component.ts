@@ -38,15 +38,12 @@ export class SeriesComponent implements OnInit {
 
 	ngOnInit() {
 		console.log('series component init');
-		console.log(this.series);
+		console.log("series id: " + this.series);
 		let id = this._userService.getLastLoggedInUserId();
 		this.opponentId = this.series.getOpponent(id);
 		this._userService.getUser(this.opponentId).subscribe(user => this.opponentName = user.name);
-		console.log("opponent id: " + this.opponentId);
 		this._gameService.getGamesBySeries(this.series.id).subscribe(games => {
 			this.games = games;
-			console.log("series " + this.series.id + " games:");
-			console.log(this.games);
 		});
 		/*this._userService.getUser(this.game.homeUser).then(user => this.homeUser = user);
 		this._userService.getUser(this.game.awayUser).then(user => this.awayUser = user);

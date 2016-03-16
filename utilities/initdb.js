@@ -9,7 +9,7 @@ var Team = require('../models/TeamSchema.js');
 console.log('chel initdb utility');
 
 // connect to database
-var mongoUri = 'mongodb://localhost/chel-build';
+var mongoUri = 'mongodb://localhost/chel';
 mongoose.connect(mongoUri, function (error) {
 	if (error) console.error(error);
 	else console.log('connected to mongo database.');

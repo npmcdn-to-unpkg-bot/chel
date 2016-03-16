@@ -1,0 +1,29 @@
+<div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col mdl-cell--middle chel-series-detail-card">
+	<div class="chel-series-detail-game-title mdl-card__title">
+		<span>Game {{index}}</span>
+		<div class="mdl-layout-spacer"></div>
+		<div class="">{{formatDate(game.date)}}</div>
+		<button [attr.id]="'game-more-button' + game.id" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+			<i class="material-icons">more_vert</i>
+		</button>
+		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" [attr.for]="'game-more-button' + game.id">
+			<li (click)="editGame()" class="mdl-menu__item">Edit</li>
+			<li (click)="deleteGame()" class="mdl-menu__item">Delete</li>
+		</ul>
+	</div>
+	<div class="chel-series-detail-game-content mdl-card__supporting-text">
+		<div class="chel-series-detail-game-team-container chel-series-detail-game-away-container">
+			<div class="logo"><img src="{{homeTeam.logoUrl}}"/></div>
+			<div class="user-name">{{awayUser.name}}</div>
+		</div>
+		<div class="chel-series-detail-game-score-container">
+			<div class="score">{{game.awayScore}} - {{game.homeScore}}</div>
+			<div class="at">@</div>
+			<div class="ot"><span *ngIf="game.overtime">OT</span></div>
+		</div>
+		<div class="chel-series-detail-game-team-container chel-series-detail-game-home-container">
+			<div class="logo"><img src="{{awayTeam.logoUrl}}"/></div>
+			<div class="user-name">{{homeUser.name}}</div>
+		</div>
+	</div>
+</div>

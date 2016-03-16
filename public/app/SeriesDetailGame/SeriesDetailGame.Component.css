@@ -1,0 +1,81 @@
+.chel-series-detail-card {
+	min-height: 165px;
+}
+
+.chel-series-detail-game-title {
+	background-color:#333;
+	color:#fff;
+	padding-top:1px;
+	padding-bottom:1px;
+}
+
+.chel-series-detail-game-content {
+	display: -webkit-flex; /* Safari */
+	display: flex;
+	-webkit-flex-direction: row; /* Safari */
+	flex-direction: row;
+	-webkit-flex-wrap: nowrap; /* Safari */
+	flex-wrap: nowrap;
+	-webkit-justify-content: center; /* Safari */
+	justify-content: center;
+	-webkit-align-items: stretch; /* Safari */
+	align-items: stretch;
+}
+
+.chel-series-detail-game-team-container .logo img {
+	height: 50px;
+	width:50px;
+}
+
+.chel-series-detail-game-team-container {
+	/*background-color:lightgray;*/
+	text-align: center;
+}
+
+.chel-series-detail-game-team-container logo {
+	/*display:block;
+	height:80px;
+	width:80px;*/
+	/*background-color: gray;*/
+}
+
+.chel-series-detail-game-team-container .user-name {
+	font-size: 18px;
+    margin-top: 12px;
+	color:#333;
+}
+
+.chel-series-detail-game-away-container {
+	-webkit-flex-grow: 1; /* Safari */
+	flex-grow: 1;
+}
+
+.chel-series-detail-game-score-container {
+	-webkit-flex-grow: 2; /* Safari */
+	flex-grow: 2;
+	/*background-color:gray;*/
+	text-align:center;
+}
+
+.chel-series-detail-game-score-container .score {
+	margin-top: 17px;
+	color:#000;
+	font-size: 54px;
+}
+
+.chel-series-detail-game-score-container .at {
+	font-size: 29px;
+    margin-top: 25px;
+    color: #e1e1e1;
+}
+
+.chel-series-detail-game-score-container .ot {
+	margin-top: 15px;
+    font-size: 15px;
+    font-weight: 700;
+ }
+
+.chel-series-detail-game-home-container {
+	-webkit-flex-grow: 1; /* Safari */
+	flex-grow: 1;
+}

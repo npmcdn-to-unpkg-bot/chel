@@ -13,21 +13,47 @@ export class Game {
 		public homeScore: number,
 		public awayScore: number,
 		public overtime: boolean,
-		public notes: string) {
+		public notes: string) {}
 		
+	getOpponent(user: string) {
+		if(this.homeUser == user) {
+			return this.awayUser;
+		} else {
+			return this.homeUser;
+		}
+	}
+		
+	getFormattedDate(){
+		var d = new Date(this.date);
+		var month = d.getMonth();
+		var day = d.getDate();
+
+		month = month < 10 ? '0' + month : month;
+		day = day < 10 ? '0' + day : day;
+
+		return String(d.getFullYear()) + month + day;
 	}
 }
 
-/*export class GameUtilities {
-	countHomeWins(series: Series, games: Game[]) : number {
+export class GameUtilities {
+	getFormattedDate(game){
+		var month = date.getMonth();
+		var day = date.getDate();
+
+		month = month < 10 ? '0' + month : month;
+		day = day < 10 ? '0' + day : day;
+
+		return String(date.getFullYear()) + month + day;
+	}
+	/*countHomeWins(series: Series, games: Game[]) : number {
 		//games.filter(game => game.)
 		return 0;
 	}
 	isSeriesOver(series: Series, games: Game[]) : boolean {
 		//let homeWins = 
 		return false;
-	}
-}*/
+	}*/
+}
 
 /*function randomDate(){
    var startDate = new Date(2012,0,1).getTime();
@@ -195,6 +221,8 @@ export class GameService {
 		
 		return this.http.get(this._uri + id).map( responseData => {
 			let d = responseData.json();
+			//console.log(d.date);
+			//console.log(d._id);
 			return new Game(
 				d._id,
 				d.series,
@@ -211,10 +239,11 @@ export class GameService {
 		});
 	}
 	
-	getGamesBySeries(series: number) {
-		//return Promise.resolve(_mockGames).then(games => games.filter(game => game.series === series));
+	getGamesBySeries(series: string) {
+		//console.log('getGamesBySeries');
 		
 		return this.http.get(this._uri).map( responseData => {
+			//console.log(responseData.json());
 			return responseData.json();
 		})
 		.map((games: Array<any>) => {
