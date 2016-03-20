@@ -30,7 +30,6 @@ export class SeriesDetailComponent implements OnInit {
 		private _gameService: GameService,
 		private _routeParams: RouteParams) {
 			this.id = _routeParams.get('id');
-			console.log('id: ' + this.id);
 	}
 
 	ngOnInit() {
@@ -39,9 +38,8 @@ export class SeriesDetailComponent implements OnInit {
 			this._gameService.getGamesBySeries(this.id).subscribe(games => {
 				this.games = games;
 				this.games.sort((a,b) => return (new Date(b.date) - new Date(a.date)));
-				console.log('series detail list');
-				console.log(this.series);
-				console.log(this.games);
+				
+				this.seriesOver = this.games.length >= this.series.length;
 			});
 		});
 	}

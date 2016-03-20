@@ -5,7 +5,7 @@ import { Http } from 'angular2/http';
 
 export class Series {
 	constructor(public id: string, public length: number, public homeUser: string, public awayUser: string) {
-		
+
 	}
 	
 	getOpponent(user: string) {
@@ -14,6 +14,10 @@ export class Series {
 		} else {
 			return this.homeUser;
 		}
+	}
+	
+	getWinsNeeded() {
+		return Math.floor(this.length / 2) + 1;
 	}
 }
 

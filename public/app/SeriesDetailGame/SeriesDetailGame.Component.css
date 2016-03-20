@@ -59,8 +59,12 @@
 
 .chel-series-detail-game-score-container .score {
 	margin-top: 17px;
-	color:#000;
+	color: #DE3E35;
 	font-size: 54px;
+}
+
+.winner .chel-series-detail-game-score-container .score {
+	color:green;
 }
 
 .chel-series-detail-game-score-container .at {

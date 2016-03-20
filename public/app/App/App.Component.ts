@@ -1,5 +1,5 @@
 import { Component, provide, OnInit } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import { HTTP_PROVIDERS } from 'angular2/http';
 
@@ -20,6 +20,7 @@ import { SeriesDetailComponent } from '../SeriesDetail/SeriesDetail.Component';
 import { GameListComponent } from '../GameList/GameList.Component';
 import { SettingsComponent } from '../Settings/Settings.Component';
 import { StatisticsComponent } from '../Statistics/Statistics.Component';
+import { AddSeriesComponent } from '../AddSeries/AddSeries.Component';
 
 @Component({
 	selector: 'chel-app',
@@ -27,6 +28,7 @@ import { StatisticsComponent } from '../Statistics/Statistics.Component';
 	styleUrls: ['app/App/App.Component.css'],
 	directives: [
 		CORE_DIRECTIVES,
+		FORM_DIRECTIVES,
 		ROUTER_DIRECTIVES,
 		MDL
 	],
@@ -58,6 +60,11 @@ import { StatisticsComponent } from '../Statistics/Statistics.Component';
 		path: '/series/:id',
 		name: 'SeriesDetail',
 		component: SeriesDetailComponent
+	},
+	{
+		path: '/add/series/',
+		name: 'AddSeries',
+		component: AddSeriesComponent
 	},
 	{
 		path: '/games',

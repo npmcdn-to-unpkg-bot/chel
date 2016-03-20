@@ -25,6 +25,7 @@ export class SeriesDetailGameComponent implements OnInit {
 	public awayUser: User = {};
 	public homeTeam: Team = {};
 	public awayTeam: Team = {};
+	public isWin: boolean = false;
 
 	constructor(
 		private _gameService: GameService,
@@ -32,11 +33,13 @@ export class SeriesDetailGameComponent implements OnInit {
 		private _teamService: TeamService,
 		private _router: Router,
 		private _routeParams: RouteParams) {
-
+			
 	}
 
 	ngOnInit() {
 		this.loggedInUserId = this._userService.getLastLoggedInUserId();
+		this.isWin = this.game.isWinner(this.loggedInUserId);
+		console.log('winner: ' + this.isWin);
 		this._userService.getUser(this.game.homeUser).subscribe(user => this.homeUser = user);
 		this._userService.getUser(this.game.awayUser).subscribe(user => this.awayUser = user);
 		this._teamService.getTeam(this.game.homeTeam).subscribe(team => this.homeTeam = team);

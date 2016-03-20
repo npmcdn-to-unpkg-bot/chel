@@ -30,4 +30,10 @@ export class SeriesListComponent implements OnInit {
 			this.series = series;
 		});
 	}
+	
+	addSeries() {
+		this._router.navigate(['AddSeries', {}]);
+		//document.querySelector('.chel-drawer').classList.remove("is-visible");
+		//document.querySelector('.mdl-layout__obfuscator').classList.remove("is-visible");
+	}
 }

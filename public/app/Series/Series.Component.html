@@ -1,6 +1,5 @@
-<div class="chel-series-card mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col mdl-cell--middle chel-series-card">
+<div [class.over]="isOver" [class.winner]="isWinner" [class.loser]="isLoser" class="chel-series-card mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col mdl-cell--middle chel-series-card">
 	<div class="chel-series-card-title mdl-card__title">
-		<!--<h2 class="mdl-card__title-text">vs {{opponentName}}</h2>-->
 		<span>Series # vs {{opponentName}}</span>
 		<div class="mdl-layout-spacer"></div>
 		<div class="chel-series-card-best-of">Best of {{series.length}}</div>
@@ -12,24 +11,19 @@
 			<li (click)="deleteSeries()" class="mdl-menu__item">Delete</li>
 		</ul>
 	</div>
-	<div (click)="goToDetail()" class="mdl-card__supporting-text">
-		Some content will go here, which you can click to go to details.
-		<!--{{awayUser.name}} at {{homeUser.name}}<br />
-		{{awayTeam.location}} {{awayTeam.name}} at {{homeTeam.location}} {{homeTeam.name}}-->
+	<div (click)="goToDetail()" class="chel-series-content mdl-card__supporting-text">
+		<div class="chel-series-user-container chel-series-user-away-container">
+			<!--<div class="logo"><img src="{{homeTeam.logoUrl}}"/></div>-->
+			<div class="user-name">{{awayUser.name}}</div>
+		</div>
+		<div class="chel-series-score-container">
+			<div class="score">{{awayGamesWon}} - {{homeGamesWon}}</div>
+			<div class="at">@</div>
+			<div class="elimination"><span *ngIf="isElimination">ELIMINATION GAME</span></div>
+		</div>
+		<div class="chel-series-user-container chel-series-user-home-container">
+			<!--<div class="logo"><img src="{{awayTeam.logoUrl}}"/></div>-->
+			<div class="user-name">{{homeUser.name}}</div>
+		</div>
 	</div>
-	<!--<div class="mdl-card__actions mdl-card--border">
-		<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Details</a>
-		<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Start Game</a>
-	</div>-->
-	<!--<div class="mdl-card__menu">
-		<div class="chel-series-card-best-of">Best of {{series.length}}</div>
-		<button [attr.id]="'series-more-button' + series.id" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-			<i class="material-icons">more_vert</i>
-		</button>
-		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" [attr.for]="'series-more-button' + series.id">
-			<li (click)="startGame()" class="mdl-menu__item">Start Game</li>
-			<li (click)="editSeries()" class="mdl-menu__item">Edit</li>
-			<li (click)="deleteSeries()" class="mdl-menu__item">Delete</li>
-		</ul>
-	</div>-->
 </div>

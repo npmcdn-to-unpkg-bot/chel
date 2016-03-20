@@ -22,6 +22,18 @@ export class Game {
 			return this.homeUser;
 		}
 	}
+	
+	getWinner(): string {
+		if(this.homeScore > this.awayScore) {
+			return this.homeUser;
+		} else {
+			return this.awayUser;
+		}
+	}
+	
+	isWinner(me: string) {
+		return this.getWinner() === me;
+	}
 		
 	getFormattedDate(){
 		var d = new Date(this.date);
