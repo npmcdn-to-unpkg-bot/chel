@@ -36,8 +36,6 @@ export class SeriesDetailGameComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log(this.index);
-		console.log(this.game);
 		this.loggedInUserId = this._userService.getLastLoggedInUserId();
 		this._userService.getUser(this.game.homeUser).subscribe(user => this.homeUser = user);
 		this._userService.getUser(this.game.awayUser).subscribe(user => this.awayUser = user);

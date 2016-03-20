@@ -41,38 +41,30 @@ export class SeriesService {
 	
 	constructor(private http: Http) {};
 	
-	getSeries(id: string) {
-		if(isNaN(id) {
-			return this.http.get(this._uri).map( responseData => {
-				return responseData.json();
-			})
-			.map((series: Array<any>) => {
-				let result:Array<Series> = [];
-				if (series) {
-					series.forEach((s) => {
-						result.push(new Series(
-							s._id,
-							s.length,
-							s.homeUser,
-							s.awayUser));
-					});
-				}
-				return result;
-			});
-		} else {
-			return this.http.get(this._uri + id).map( responseData => {
-				let d = responseData.json();
-				return new Series(d._id, d.length, d.homeUser, d.awayUser);
-			});
-		}
-		
-		/*if(!!id) {
-			return Promise.resolve(_mockSeries).then(
-				series => series.filter(s => s.id === id)[0]
-			);
-		} else {
-			return Promise.resolve(_mockSeries);
-		}*/
+	getSeriesById(id: string) {
+		return this.http.get(this._uri + id).map( responseData => {
+			let d = responseData.json();
+			return new Series(d._id, d.length, d.homeUser, d.awayUser);
+		});
+	}
+	
+	getSeries() {
+		return this.http.get(this._uri).map( responseData => {
+			return responseData.json();
+		})
+		.map((series: Array<any>) => {
+			let result:Array<Series> = [];
+			if (series) {
+				series.forEach((s) => {
+					result.push(new Series(
+						s._id,
+						s.length,
+						s.homeUser,
+						s.awayUser));
+				});
+			}
+			return result;
+		});
 	}
 	
 	getSeriesForUser(user: string) {

@@ -21,22 +21,26 @@ import { SeriesDetailGameComponent } from '../SeriesDetailGame/SeriesDetailGame.
 	]
 })
 export class SeriesDetailComponent implements OnInit {
-	series: Series[] = [];
+	series: Series = {};
 	games: Game[] = [];
+	seriesOver: boolean = true;
 
 	constructor(
 		private _seriesService: SeriesService,
 		private _gameService: GameService,
 		private _routeParams: RouteParams) {
 			this.id = _routeParams.get('id');
+			console.log('id: ' + this.id);
 	}
 
 	ngOnInit() {
-		this._seriesService.getSeries(this.id).subscribe(series => {
+		this._seriesService.getSeriesById(this.id).subscribe(series => {
 			this.series = series;
 			this._gameService.getGamesBySeries(this.id).subscribe(games => {
 				this.games = games;
 				this.games.sort((a,b) => return (new Date(b.date) - new Date(a.date)));
+				console.log('series detail list');
+				console.log(this.series);
 				console.log(this.games);
 			});
 		});
