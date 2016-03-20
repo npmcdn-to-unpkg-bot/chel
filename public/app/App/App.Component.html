@@ -3,7 +3,7 @@
 		  <div class="mdl-layout__drawer-button"><i class="material-icons">menu</i>
 			</div>
         <div class="mdl-layout__header-row" id="mainHeader">
-          <span class="mdl-layout-title">{{title}}</span>
+          <span id="chel-title" class="mdl-layout-title"></span>
 		  <div class="mdl-layout-spacer"></div>
 		  <button id="switch-user" class="mdl-button mdl-js-button">
 			{{loggedInUserName}} <i class="material-icons">person</i>
@@ -17,7 +17,7 @@
       <div class="chel-drawer mdl-layout__drawer">
         <nav class="chel-navigation mdl-navigation">
 			<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['SeriesList', {}])">Series</a>
-			<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['SeriesList', {}])">Statistics</a>
+			<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['Statistics', {}])">Statistics</a>
           <!--<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['GameList', {}])">Games</a>-->
 		  <!--<a class="mdl-navigation__link chel-nav-link" (click)="navigate(['Settings', {}])">Settings</a>-->
         </nav>

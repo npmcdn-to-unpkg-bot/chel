@@ -12,11 +12,14 @@ import { GameService } from '../services/Game.Service';
 import { User, UserService } from '../services/User.Service';
 import { TeamService } from '../services/Team.Service';
 import { SeriesService } from '../services/Series.Service';
+import { SeriesNumberService } from '../services/SeriesNumber.Service';
 
+import { LoginComponent } from '../Login/Login.Component';
 import { SeriesListComponent } from '../SeriesList/SeriesList.Component';
 import { SeriesDetailComponent } from '../SeriesDetail/SeriesDetail.Component';
 import { GameListComponent } from '../GameList/GameList.Component';
 import { SettingsComponent } from '../Settings/Settings.Component';
+import { StatisticsComponent } from '../Statistics/Statistics.Component';
 
 @Component({
 	selector: 'chel-app',
@@ -35,10 +38,16 @@ import { SettingsComponent } from '../Settings/Settings.Component';
 		UserService,
 		TeamService,
 		SeriesService,
+		SeriesNumberService,
 		provide(LocationStrategy, {useClass: HashLocationStrategy})
 	]
 })
 @RouteConfig([
+	{
+		path: '/login',
+		name: 'Login',
+		component: LoginComponent
+	},
 	{
 		path: '/series',
 		name: 'SeriesList',
@@ -59,6 +68,11 @@ import { SettingsComponent } from '../Settings/Settings.Component';
 		path: '/settings',
 		name: 'Settings',
 		component: SettingsComponent
+	},
+	{
+		path: '/statistics/',
+		name: 'Statistics',
+		component: StatisticsComponent
 	}
 ])
 export class AppComponent implements OnInit{

@@ -1,9 +1,24 @@
-.bottom-right-button {
+/* add button */
+.chel-add-button {
 	position: fixed;
 	display: block;
 	right: 0;
 	bottom: 0;
-	margin-right: 20px;
+	margin-right: 35px;
 	margin-bottom: 20px;
 	z-index: 900;
+	background:#DE3E35 !important;
+}
+
+
+/* loader */
+.chel-loading {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	height: 100px;
 }

@@ -1,5 +1,18 @@
+.chel-series-card {
+	min-height: 165px;
+}
+
+.chel-series-card-title {
+	background-color:#333;
+	color:#fff;
+	padding-top:1px;
+	padding-bottom:1px;
+}
+
 .chel-series-card-best-of {
 	float: left;
 	margin-right: 5px;
-	color: #757575
+	color: #fff;
+    font-weight: 100;
+    font-size: 13px;
 }

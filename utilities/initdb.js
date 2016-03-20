@@ -229,14 +229,14 @@ var teamBag = [
 	createTeam('Boston', 'Bruins', 'images/teams/bruins.png'),
 	createTeam('Buffalo', 'Sabres', 'images/teams/sabres.png'),
 	createTeam('Detroit', 'Red Wings', 'images/teams/red-wings.png'),
-	createTeam('Florida', 'Panthers', 'images/teams/panthers.png'),
+	createTeam('Florida', 'Panthers', 'images/teams/panthers.gif'),
 	createTeam('Montreal', 'Canadiens', 'images/teams/canadiens.png'),
 	createTeam('Ottowa', 'Senators', 'images/teams/senators.png'),
 	createTeam('Tampa Bay', 'Lightning', 'images/teams/lightning.png'),
 	createTeam('Toronto', 'Maple Leafs', 'images/teams/maple-leafs.png'),
 	
 	// Pacific Division
-	createTeam('Anaheim', 'Ducks', 'images/teams/ducks.png'),
+	createTeam('Anaheim', 'Ducks', 'images/teams/ducks.gif'),
 	createTeam('Arizona', 'Coyotes', 'images/teams/coyotes.png'),
 	createTeam('Calgary', 'Flames', 'images/teams/flames.png'),
 	createTeam('Edmonton', 'Oilers', 'images/teams/oilers.png'),

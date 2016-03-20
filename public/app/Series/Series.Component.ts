@@ -7,6 +7,7 @@ import { Series, SeriesService } from '../services/Series.Service';
 import { Game, GameService } from '../services/Game.Service';
 import { User, UserService } from '../services/User.Service';
 import { Team, TeamService } from '../services/Team.Service';
+import { SeriesNumberService } from '../services/SeriesNumber.Service';
 
 @Component({
 	selector: 'series',
@@ -19,6 +20,7 @@ import { Team, TeamService } from '../services/Team.Service';
 export class SeriesComponent implements OnInit {
 	@Input() series: Series;
 	games: Game[] = [];
+	seriesNumber: number = 1;
 	opponentId: string = '';
 	opponentName: string = '';
 	/*homeUser: User = {};
@@ -31,20 +33,23 @@ export class SeriesComponent implements OnInit {
 		private _gameService: GameService,
 		private _userService: UserService,
 		private _teamService: TeamService,
+		private _seriesNumberService: SeriesNumberService,
 		private _router: Router,
 		private _routeParams: RouteParams) {
 
 	}
 
 	ngOnInit() {
-		console.log('series component init');
-		console.log("series id: " + this.series);
 		let id = this._userService.getLastLoggedInUserId();
 		this.opponentId = this.series.getOpponent(id);
 		this._userService.getUser(this.opponentId).subscribe(user => this.opponentName = user.name);
 		this._gameService.getGamesBySeries(this.series.id).subscribe(games => {
 			this.games = games;
 		});
+		/*this._seriesNumberService.getSeriesNumber(id, this.opponentId, this.series.id).then(number => {
+			this.seriesNumber = number;	
+		});*/
+		
 		/*this._userService.getUser(this.game.homeUser).then(user => this.homeUser = user);
 		this._userService.getUser(this.game.awayUser).then(user => this.awayUser = user);
 		this._teamService.getTeam(this.game.homeTeam).then(team => this.homeTeam = team);

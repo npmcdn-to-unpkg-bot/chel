@@ -94,12 +94,26 @@ export class SeriesService {
 			}
 			return result;
 		});
-		
-		
-		/*return Promise.resolve(_mockSeries).then(
-			series => series.filter(s => {
-				return (s.homeUser === user || s.awayUser === user);
-			})
-		);*/
+	}
+	
+	getSeriesAgainstOpponent(me: string, opponent: string) {
+		return this.http.get(this._uri).map( responseData => {
+			return responseData.json();
+		})
+		.map((series: Array<any>) => {
+			let result:Array<Series> = [];
+			if (series) {
+				series.forEach((s) => {
+					if((s.homeUser === me || s.awayUser === me) && (s.homeUser === opponent || s.awayUser === opponent)) {
+						result.push(new Series(
+							s._id,
+							s.length,
+							s.homeUser,
+							s.awayUser));
+					}
+				});
+			}
+			return result;
+		});
 	}
 }
