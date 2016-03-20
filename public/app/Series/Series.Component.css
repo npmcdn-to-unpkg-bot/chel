@@ -88,7 +88,8 @@
     color: #e1e1e1;
 }
 
-.chel-series-score-container .elimination {
+.chel-series-score-container .elimination,
+.chel-series-score-container .final {
 	margin-top: 15px;
 	font-size: 10px;
 	font-weight: 700;
